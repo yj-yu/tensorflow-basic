@@ -8,7 +8,7 @@ class: titlepage, no-number
 
 # TensorFlow Basic
 ## .gray.author[Youngjae Yu]
-### .gray.small[May 19, 2017]
+### .gray.small[Aug 2, 2017]
 ### .x-small[https://github.com/yj-yu/tensorflow-basic]
 ### .x-small[https://yj-yu.github.io/tensorflow-basic]
 
@@ -125,7 +125,7 @@ b = tf.constant(1.0, shape=[3,4]) # 1.0 의 값을 갖는 3x4 2차원 Tensor 생
 c = tf.constant(1.0, shape=[3,4,5]) # 1.0 의 값을 갖는 3x4x5 3차원 Tensor 생성
 d = tf.random_normal(shape=[3,4,5]) # Gaussian Distribution 에서 3x4x5 Tensor를 Sampling
 
-print c
+print (c)
 ```
 
 `<tf.Tensor 'Const_24:0' shape=(3, 4, 5) dtype=float32>`
@@ -189,7 +189,7 @@ Tip. native operation op `+,-,*,/` 는 TensorFlow Op 처럼 사용가능
 ```python
 c = tf.add(a,b) <-> c = a + b
 c = tf.subtract(a,b) <-> c = a - b
-c = tf.mul(a,b) <-> c = a * b
+c = tf.multiply(a,b) <-> c = a * b
 c = tf.div(a,b) <-> c = a / b
 ```
 
@@ -781,14 +781,14 @@ logits = tf.matmul() # ...
 predictions = # ...
 ```
 
-* 모델 부분만 빼면 `day1/train.py` 코드와 대부분 중복된다
+* 모델 부분만 빼면 `part1/train.py` 코드와 대부분 중복된다
 * 모델 코드와 트레이닝 코드를 분리하면 각 컴포넌트를 수정하기 매우 편리해짐
 * 코드를 `models.py` 와 `train.py` 로 분리해보자!
 ---
 ## Code structure
 
 ```bash
-./code-day2
+./code-part2
 ├── train.py
 └── models.py
 ```

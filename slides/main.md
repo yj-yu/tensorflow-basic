@@ -548,7 +548,7 @@ Variable_1:0
 
 ```python
 c = tf.Variable(tf.ones(shape=[10]), name="my_variable")
-d = tf.Variable(tf.zeros(shape=[1]), name="my_variable")
+d = tf.Variable(tf.zeros(shape=[]), name="my_variable")
 
 print (c.name)
 print (d.name)

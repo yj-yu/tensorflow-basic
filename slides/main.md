@@ -223,8 +223,8 @@ Placeholder: 선언 당시에 값은 비어있고, 형태(shape)와 타입(dtype
 
 Feed: Placeholder에 원하는 값을 주입하는 것
 ```python
-a = tf.placeholder(dtype=tf.float32, shape=[1]) # 1차원 실수형 Placeholder 생성
-b = tf.placeholder(dtype=tf.float32, shape=[1]) # 1차원 실수형 Placeholder 생성
+a = tf.placeholder(dtype=tf.float32, shape=[]) # 1차원 실수형 Placeholder 생성
+b = tf.placeholder(dtype=tf.float32, shape=[]) # 1차원 실수형 Placeholder 생성
 c = a + b
 with tf.Session() as sess:
   feed = {a:1, b:2} # python dictionary
@@ -258,7 +258,7 @@ Parameter `W, b` 를 `1.0` 으로 **초기화** 한 후 linear model의 출력 �
 ```python
 W = tf.Variable(1.0, dtype=tf.float32)
 b = tf.Variable(1.0, dtype=tf.float32)
-x = tf.placeholder(dtype=tf.float32, shape=[1])
+x = tf.placeholder(dtype=tf.float32, shape=[])
 
 linear_model_output = W * x + b
 
@@ -278,9 +278,9 @@ with tf.Session() as sess:
 ## Variable: 학습하고자 하는 모델의 Parameter
 Parameter `W, b` 를 **랜덤** 으로 **초기화** 한 후 linear model의 출력 구하기
 ```python
-W = tf.Variable(tf.random_normal(shape=[1]), dtype=tf.float32)
-b = tf.Variable(tf.random_normal(shape=[1]), dtype=tf.float32)
-x = tf.placeholder(dtype=tf.float32, shape=[1])
+W = tf.Variable(tf.random_normal(shape=[]), dtype=tf.float32)
+b = tf.Variable(tf.random_normal(shape=[]), dtype=tf.float32)
+x = tf.placeholder(dtype=tf.float32, shape=[])
 
 linear_model_output = W * x + b
 
@@ -564,7 +564,7 @@ my_variable_1:0
 
 ```python
 c = tf.Variable(tf.ones(shape=[10]), name="my_variable")
-d = tf.Variable(tf.zeros(shape=[1]), name="my_variable")
+d = tf.Variable(tf.zeros(shape=[]), name="my_variable")
 
 print (c.name)
 print (d.name)

@@ -43,7 +43,7 @@ def main(_):
       images_val, labels_val = mnist.validation.next_batch(FLAGS.batch_size)
       feed = {model_inputs: batch_images, labels: batch_labels}
       _, loss_val = sess.run([train_op, loss], feed_dict=feed)
-      print "step {} | loss {}".format(step, loss_val)
+      print ("step {} | loss {}".format(step, loss_val))
 
       if step % 10 == 0:
         summary_train = sess.run(merge_op, feed_dict=feed)

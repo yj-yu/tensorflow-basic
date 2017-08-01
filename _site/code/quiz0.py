@@ -10,4 +10,4 @@ sess = tf.Session()
 feed = {a:np.random.randn(3,4), b:np.random.randn(4,6)}
 result = sess.run(c, feed_dict=feed)
 
-print result
+print (result)

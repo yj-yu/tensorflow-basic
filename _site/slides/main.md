@@ -8,7 +8,7 @@ class: titlepage, no-number
 
 # TensorFlow Basic
 ## .gray.author[Youngjae Yu]
-### .gray.small[May 19, 2017]
+### .gray.small[Aug 2, 2017]
 ### .x-small[https://github.com/yj-yu/tensorflow-basic]
 ### .x-small[https://yj-yu.github.io/tensorflow-basic]
 
@@ -73,10 +73,12 @@ conda list
 
 ```
 
-pip가 보이시죠? 이제 pip를 통해 tensorflow 라이브러리를 추가할 것입니다.
-자동으로 tensorflow 최신 배포판을 설치합니다. 
+pip가 보이시죠? 이제 pip를 통해 tensorflow 및 실습 환경을 위한 라이브러리를 추가할 것입니다.
+다음 명령어들을 입력하여 자동으로 tensorflow 최신 배포판을 설치합니다. 
 
 ```python
+pip install ipython
+pip install jupyter
 pip install tensorflow
 ```
 
@@ -84,18 +86,11 @@ pip install tensorflow
 
 ---
 ## Install configuration
-```python
-import tensorflow as tf
-a = tf.constant("Hello!")
-b = tf.constant(10)
-c = tf.constant(20)
-with tf.Session() as sess:
-  print (sess.run(a))
-  print (sess.run(a+b))
-```
 
 ```python
 git clone https://github.com/yj-yu/tensorflow-basic.git
+cd tensorflow-basic
+ls
 ```
 
 code(https://github.com/yj-yu/tensorflow-basic)
@@ -125,7 +120,7 @@ b = tf.constant(1.0, shape=[3,4]) # 1.0 의 값을 갖는 3x4 2차원 Tensor 생
 c = tf.constant(1.0, shape=[3,4,5]) # 1.0 의 값을 갖는 3x4x5 3차원 Tensor 생성
 d = tf.random_normal(shape=[3,4,5]) # Gaussian Distribution 에서 3x4x5 Tensor를 Sampling
 
-print c
+print (c)
 ```
 
 `<tf.Tensor 'Const_24:0' shape=(3, 4, 5) dtype=float32>`
@@ -189,7 +184,7 @@ Tip. native operation op `+,-,*,/` 는 TensorFlow Op 처럼 사용가능
 ```python
 c = tf.add(a,b) <-> c = a + b
 c = tf.subtract(a,b) <-> c = a - b
-c = tf.mul(a,b) <-> c = a * b
+c = tf.multiply(a,b) <-> c = a * b
 c = tf.div(a,b) <-> c = a / b
 ```
 
@@ -223,8 +218,8 @@ Placeholder: 선언 당시에 값은 비어있고, 형태(shape)와 타입(dtype
 
 Feed: Placeholder에 원하는 값을 주입하는 것
 ```python
-a = tf.placeholder(dtype=tf.float32, shape=[1]) # 1차원 실수형 Placeholder 생성
-b = tf.placeholder(dtype=tf.float32, shape=[1]) # 1차원 실수형 Placeholder 생성
+a = tf.placeholder(dtype=tf.float32, shape=[]) # 1차원 실수형 Placeholder 생성
+b = tf.placeholder(dtype=tf.float32, shape=[]) # 1차원 실수형 Placeholder 생성
 c = a + b
 with tf.Session() as sess:
   feed = {a:1, b:2} # python dictionary
@@ -258,7 +253,7 @@ Parameter `W, b` 를 `1.0` 으로 **초기화** 한 후 linear model의 출력 �
 ```python
 W = tf.Variable(1.0, dtype=tf.float32)
 b = tf.Variable(1.0, dtype=tf.float32)
-x = tf.placeholder(dtype=tf.float32, shape=[1])
+x = tf.placeholder(dtype=tf.float32, shape=[])
 
 linear_model_output = W * x + b
 
@@ -278,9 +273,9 @@ with tf.Session() as sess:
 ## Variable: 학습하고자 하는 모델의 Parameter
 Parameter `W, b` 를 **랜덤** 으로 **초기화** 한 후 linear model의 출력 구하기
 ```python
-W = tf.Variable(tf.random_normal(shape=[1]), dtype=tf.float32)
-b = tf.Variable(tf.random_normal(shape=[1]), dtype=tf.float32)
-x = tf.placeholder(dtype=tf.float32, shape=[1])
+W = tf.Variable(tf.random_normal(shape=[]), dtype=tf.float32)
+b = tf.Variable(tf.random_normal(shape=[]), dtype=tf.float32)
+x = tf.placeholder(dtype=tf.float32, shape=[])
 
 linear_model_output = W * x + b
 
@@ -337,7 +332,7 @@ mnist = input_data.read_data_sets("./data", one_hot=True)
 ```python
 for _ in range(10000):
   batch_images, batch_labels = mnist.train.next_batch(100)
-  batch_images_val, batch_labels_val = mnist.val.next_batch(100)
+  batch_images_val, batch_labels_val = mnist.validation.next_batch(100)
   print (batch_image.shape) # [100, 784]
   print (batch_labels.shape) # [100, 10]
 ```
@@ -548,7 +543,7 @@ Variable_1:0
 
 ```python
 c = tf.Variable(tf.ones(shape=[10]), name="my_variable")
-d = tf.Variable(tf.zeros(shape=[1]), name="my_variable")
+d = tf.Variable(tf.zeros(shape=[]), name="my_variable")
 
 print (c.name)
 print (d.name)
@@ -564,7 +559,7 @@ my_variable_1:0
 
 ```python
 c = tf.Variable(tf.ones(shape=[10]), name="my_variable")
-d = tf.Variable(tf.zeros(shape=[1]), name="my_variable")
+d = tf.Variable(tf.zeros(shape=[]), name="my_variable")
 
 print (c.name)
 print (d.name)
@@ -781,14 +776,14 @@ logits = tf.matmul() # ...
 predictions = # ...
 ```
 
-* 모델 부분만 빼면 `day1/train.py` 코드와 대부분 중복된다
+* 모델 부분만 빼면 `part1/train.py` 코드와 대부분 중복된다
 * 모델 코드와 트레이닝 코드를 분리하면 각 컴포넌트를 수정하기 매우 편리해짐
 * 코드를 `models.py` 와 `train.py` 로 분리해보자!
 ---
 ## Code structure
 
 ```bash
-./code-day2
+./code-part2
 ├── train.py
 └── models.py
 ```

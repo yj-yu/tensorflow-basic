@@ -73,10 +73,12 @@ conda list
 
 ```
 
-pip가 보이시죠? 이제 pip를 통해 tensorflow 라이브러리를 추가할 것입니다.
-자동으로 tensorflow 최신 배포판을 설치합니다. 
+pip가 보이시죠? 이제 pip를 통해 tensorflow 및 실습 환경을 위한 라이브러리를 추가할 것입니다.
+다음 명령어들을 입력하여 자동으로 tensorflow 최신 배포판을 설치합니다. 
 
 ```python
+pip install ipython
+pip install jupyter
 pip install tensorflow
 ```
 
@@ -84,18 +86,11 @@ pip install tensorflow
 
 ---
 ## Install configuration
-```python
-import tensorflow as tf
-a = tf.constant("Hello!")
-b = tf.constant(10)
-c = tf.constant(20)
-with tf.Session() as sess:
-  print (sess.run(a))
-  print (sess.run(a+b))
-```
 
 ```python
 git clone https://github.com/yj-yu/tensorflow-basic.git
+cd tensorflow-basic
+ls
 ```
 
 code(https://github.com/yj-yu/tensorflow-basic)

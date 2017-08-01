@@ -781,14 +781,14 @@ logits = tf.matmul() # ...
 predictions = # ...
 ```
 
-* 모델 부분만 빼면 `day1/train.py` 코드와 대부분 중복된다
+* 모델 부분만 빼면 `part1/train.py` 코드와 대부분 중복된다
 * 모델 코드와 트레이닝 코드를 분리하면 각 컴포넌트를 수정하기 매우 편리해짐
 * 코드를 `models.py` 와 `train.py` 로 분리해보자!
 ---
 ## Code structure
 
 ```bash
-./code-day2
+./code-part2
 ├── train.py
 └── models.py
 ```

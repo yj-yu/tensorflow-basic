@@ -337,7 +337,7 @@ mnist = input_data.read_data_sets("./data", one_hot=True)
 ```python
 for _ in range(10000):
   batch_images, batch_labels = mnist.train.next_batch(100)
-  batch_images_val, batch_labels_val = mnist.val.next_batch(100)
+  batch_images_val, batch_labels_val = mnist.validation.next_batch(100)
   print (batch_image.shape) # [100, 784]
   print (batch_labels.shape) # [100, 10]
 ```

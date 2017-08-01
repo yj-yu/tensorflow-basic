@@ -38,7 +38,7 @@ def main(_):
       acc = sess.run(acc, feed_dict=feed)
       final_acc += acc
     final_acc /= 50.0
-    print "Full Evaluation Accuracy : {}".format(final_acc)
+    print ("Full Evaluation Accuracy : {}".format(final_acc))
 
 
 if __name__ == "__main__":

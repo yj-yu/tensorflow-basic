@@ -12,7 +12,7 @@ class: titlepage, no-number
 ### .x-small[https://github.com/yj-yu/tensorflow-basic]
 ### .x-small[https://yj-yu.github.io/tensorflow-basic]
 
-.bottom.img-66[ ![Sklogo](images/lablogo.png) ]
+.bottom.img-66[ ![](images/lablogo.png) ]
 
 
 ---
@@ -31,12 +31,67 @@ template: inverse
 # TensorFlow Basic
 
 ---
+## Install anaconda
+
+Install instruction for windows OS
+https://www.tensorflow.org/install/install_windows
+
+Anaconda에 있는 배포판에 numpy 등 기본 라이브러리를 기본적으로 포함
+
+아래 링크에서 Python 3.x 버전으로 설치를 해주세요.
+https://www.continuum.io/downloads#windows
+
+.bottom.center.img-50[ ![](images/anaconda.png) ]
+
+---
+## Install anaconda
+
+Windows 키를 누른뒤에 anaconda prompt 입력하면 console이 뜹니다.
+
+conda 라는 명령어로 여러 개의 가상환경을 만들 수 있습니다.
+
+```python
+conda create --name tf python=3.6
+```
+
+
+```python
+#tf라는 환경이 만들어졌는지 확인
+conda info --envs
+```
+---
+## Install anaconda
+
+자 이제 기본 실습환경 세팅을 위해 tf라는 가상 환경으로 들어갑니다.
+
+```python
+activate tf
+#만약 비활성화하고 싶다면 deactivate tf를 치세요.
+
+#기본 라이브러리 확인
+conda list
+
+```
+
+pip가 보이시죠? 이제 pip를 통해 tensorflow 라이브러리를 추가할 것입니다.
+자동으로 tensorflow 최신 배포판을 설치합니다. 
+
+```python
+pip install tensorflow
+```
+
+
+
+---
 ## Install configuration
 ```python
 import tensorflow as tf
 a = tf.constant("Hello!")
+b = tf.constant(10)
+c = tf.constant(20)
 with tf.Session() as sess:
-  print sess.run(a)
+  print (sess.run(a))
+  print (sess.run(a+b))
 ```
 
 ```python
@@ -127,7 +182,7 @@ c = tf.add(a,b) # a + b의 값을 갖는 Tensor c 생성
 sess = tf.Session() # Session 생성
 
 # Session을 이용하여 구하고자 하는 Tensor c를 run
-print sess.run(c) # 3
+print (sess.run(c)) # 3
 ```
 
 Tip. native operation op `+,-,*,/` 는 TensorFlow Op 처럼 사용가능
@@ -149,8 +204,8 @@ b = tf.constant(2)
 c = tf.add(a,b)
 sess = tf.Session()
 
-print a, b, c, sess
-print sess.run(c) # 3
+print (a, b, c, sess)
+print (sess.run(c)) # 3
 ```
 
 
@@ -173,10 +228,10 @@ b = tf.placeholder(dtype=tf.float32, shape=[1]) # 1차원 실수형 Placeholder 
 c = a + b
 with tf.Session() as sess:
   feed = {a:1, b:2} # python dictionary
-  print sess.run(c, feed_dict=feed) # 3
+  print (sess.run(c, feed_dict=feed)) # 3
 
   feed = {a:2, b:4.5}
-  print sess.run(c, feed_dict=feed) # 6.5
+  print (sess.run(c, feed_dict=feed)) # 6.5
 ```
 ---
 ##Quiz 0.
@@ -191,7 +246,7 @@ Tip.
 ```python
 import numpy as np
 a = np.random.randn(2,3)
-print a
+print (a)
 ```
 
 ---
@@ -283,8 +338,8 @@ mnist = input_data.read_data_sets("./data", one_hot=True)
 for _ in range(10000):
   batch_images, batch_labels = mnist.train.next_batch(100)
   batch_images_val, batch_labels_val = mnist.val.next_batch(100)
-  print batch_image.shape # [100, 784]
-  print batch_labels.shape # [100, 10]
+  print (batch_image.shape) # [100, 784]
+  print (batch_labels.shape) # [100, 10]
 ```
 
 ---
@@ -348,7 +403,7 @@ with tf.Session() as sess:
     batch_images, batch_labels = mnist.train.next_batch(100)
     feed = {model_inputs: batch_images, labels: batch_labels}
     _, loss_val = sess.run([train_op, loss], feed_dict=feed)
-    print "step {}| loss : {}".format(step, loss_val)
+    print ("step {}| loss : {}".format(step, loss_val))
 ```
 
 ---
@@ -479,8 +534,8 @@ template: inverse
 import tensorflow as tf
 a = tf.Variable(tf.random_normal(shape=[10]))
 b = tf.Variable(tf.zeros(shape=[10]))
-print a.name
-print b.name
+print (a.name)
+print (b.name)
 ```
 
 Variable:0
@@ -495,8 +550,8 @@ Variable_1:0
 c = tf.Variable(tf.ones(shape=[10]), name="my_variable")
 d = tf.Variable(tf.zeros(shape=[1]), name="my_variable")
 
-print c.name
-print d.name
+print (c.name)
+print (d.name)
 ```
 
 my_variable:0
@@ -511,8 +566,8 @@ my_variable_1:0
 c = tf.Variable(tf.ones(shape=[10]), name="my_variable")
 d = tf.Variable(tf.zeros(shape=[1]), name="my_variable")
 
-print c.name
-print d.name
+print (c.name)
+print (d.name)
 ```
 
 한줄 요약: .red[모든 텐서에는 중복되지 않게 이름이 부여된다.]
@@ -856,7 +911,7 @@ with tf.Session() as sess:
     batch_images, batch_labels = mnist.train.next_batch(100)
     feed = {model_inputs: batch_images, labels: batch_labels}
     _, loss_val = sess.run([train_op, loss], feed_dict=feed)
-    print "step {} | loss {}".format(step, loss_val)
+    print ("step {} | loss {}".format(step, loss_val))
 
     if step % 10 == 0:
       summary_train = sess.run(merge_op, feed_dict=feed)

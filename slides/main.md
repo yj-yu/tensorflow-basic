@@ -31,57 +31,15 @@ template: inverse
 # TensorFlow Basic
 
 ---
-## Install anaconda
+## Configuration
 
-Install instruction for windows OS
-https://www.tensorflow.org/install/install_windows
-
-Anaconda에 있는 배포판에 numpy 등 기본 라이브러리를 기본적으로 포함
-
-아래 링크에서 Python 3.x 버전으로 설치를 해주세요.
-https://www.continuum.io/downloads#windows
-
-.bottom.center.img-50[ ![](images/anaconda.png) ]
-
----
-## Install anaconda
-
-Windows 키를 누른뒤에 anaconda prompt 입력하면 console이 뜹니다.
-
-conda 라는 명령어로 여러 개의 가상환경을 만들 수 있습니다.
-
-```python
-conda create --name tf python=3.6
-```
-
-
-```python
-#tf라는 환경이 만들어졌는지 확인
-conda info --envs
-```
----
-## Install anaconda
-
-자 이제 기본 실습환경 세팅을 위해 tf라는 가상 환경으로 들어갑니다.
-
-```python
-activate tf
-#만약 비활성화하고 싶다면 deactivate tf를 치세요.
-
-#기본 라이브러리 확인
-conda list
-
-```
-
-pip가 보이시죠? 이제 pip를 통해 tensorflow 및 실습 환경을 위한 라이브러리를 추가할 것입니다.
+실습에 앞서
+pip를 통해 tensorflow 및 실습 환경을 위한 라이브러리를 추가합니다.
 다음 명령어들을 입력하여 자동으로 tensorflow 최신 배포판을 설치합니다. 
 
 ```python
-pip install ipython
-pip install jupyter
-pip install tensorflow
+sudo pip install tensorflow
 ```
-
 
 
 ---

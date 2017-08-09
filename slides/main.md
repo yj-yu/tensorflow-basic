@@ -220,7 +220,7 @@ pip를 통해 tensorflow 및 실습 환경을 위한 라이브러리를 추가�
 다음 명령어들을 입력하여 자동으로 tensorflow 최신 배포판을 설치합니다. 
 
 ```python
-sudo pip install tensorflow
+sudo pip install tensorflow-gpu
 ```
 
 

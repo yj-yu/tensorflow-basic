@@ -1,5 +1,5 @@
-# TensorFlow Basic 
+# TensorFlow Basic
 
-Slide: [https://yjyu.github.io/tensorflow-basic](https://yjyu.github.io/tensorflow-basic)
+Slide: [https://yj-yu.github.io/tensorflow-basic](https://yjyu.github.io/tensorflow-basic)
 
 
